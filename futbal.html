@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liga 4 obcí | Lastomír – Strážske – Tušice – Zalužice</title>
+<link rel="stylesheet" href="futbal.css">
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="logo">LIGA<span>4 OBCÍ</span></div>
+  <div class="nav-links">
+    <a href="#tabulka">Tabuľka</a>
+    <a href="#kola">Kolá</a>
+    <a href="#hraci">Hráči</a>
+  </div>
+</nav>
+
+<header id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="badge">⚽ LASTOMÍR • STRÁŽSKE • TUŠICE • ZALUŽICE</div>
+    <h1>LIGA <span>4 OBCÍ</span></h1>
+    <p class="subtitle">Tabuľka, všetky kolá a štatistiky hráčov. Výsledky vieš meniť priamo v kolách – tabuľka aj štatistiky sa prepočítajú samé. Dáta sa ukladajú do prehliadača.</p>
+    <div class="hero-btns">
+      <a href="#tabulka" class="btn btn-gold">Tabuľka</a>
+      <a href="#kola" class="btn btn-ghost">Kolá a výsledky</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>4</strong><span>tímy</span></div>
+      <div class="stat"><strong id="statPlayed">0</strong><span>odohraných zápasov</span></div>
+      <div class="stat"><strong id="statGoals">0</strong><span>gólov spolu</span></div>
+      <div class="stat"><strong id="statPlayers">0</strong><span>hráčov v štatistikách</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="teams-box">
+      <div class="team-card"><span>⚫</span><b>OŠK Tušice - TNV</b></div>
+      <div class="team-card"><span>🟢</span><b>OFK Lastomír</b></div>
+      <div class="team-card"><span>🟢</span><b>OŠK Zalužice</b></div>
+      <div class="team-card"><span>🔴</span><b>ŠK Strážske</b></div>
+      <p class="hint">Systém: každý s každým doma–vonku = 6 kôl, 12 zápasov.<br>3 body výhra • 1 bod remíza</p>
+    </div>
+  </div>
+</header>
+
+<section id="tabulka">
+  <h2 class="section-title">TABUĽKA</h2>
+  <p class="section-sub">Počítaná automaticky zo zadaných výsledkov. Zoradené: body → skóre → góly.</p>
+  <div class="table-wrap tabulka-wrap">
+    <h3 class="tabulka-title">Tabuľka</h3>
+    <table class="tabulka">
+      <thead><tr><th></th><th class="left">Klub</th><th>Z</th><th>V</th><th>R</th><th>P</th><th>Skóre</th><th>B</th><th>K</th><th>Forma</th></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="legend"><span><i class="f-circle v">V</i> Výhra</span><span><i class="f-circle d">R</i> Remíza</span><span><i class="f-circle l">P</i> Prehra</span></div>
+  </div>
+  <div class="row-btns">
+    <button id="resetBtn" class="btn btn-ghost" style="cursor:pointer">Resetovať na vzorové dáta</button>
+  </div>
+</section>
+
+<section id="kola">
+  <h2 class="section-title">KOLÁ <span>A VÝSLEDKY</span></h2>
+  <p class="section-sub">Prepíš skóre a odškrtni „odohrané“. Tabuľka hore sa hneď prepočíta.</p>
+  <div id="roundsWrap"></div>
+</section>
+
+<section id="hraci">
+  <h2 class="section-title">ŠTATISTIKY <span>HRÁČOV</span></h2>
+  <p class="section-sub">Klikni na hlavičku pre zoradenie. Tlačidlom +1 rýchlo pripíšeš gól.</p>
+  <div id="topScorers" class="grid"></div>
+  <div class="toolbar">
+    <div class="filters" id="teamFilter">
+      <button class="filter-btn active" data-team="all">Všetci</button>
+      <button class="filter-btn" data-team="OFK Lastomír">Lastomír</button>
+      <button class="filter-btn" data-team="ŠK Strážske">Strážske</button>
+      <button class="filter-btn" data-team="OŠK Tušice - TNV">Tušice</button>
+      <button class="filter-btn" data-team="OŠK Zalužice">Zalužice</button>
+    </div>
+    <input id="playerSearch" type="text" placeholder="Hľadaj hráča...">
+  </div>
+  <div class="table-wrap">
+    <table id="playersTable">
+      <thead><tr>
+        <th data-k="name">Hráč ↕</th><th data-k="team">Tím ↕</th><th data-k="played">Z ↕</th>
+        <th data-k="goals">Góly ↕</th><th data-k="assists">Asist. ↕</th><th data-k="points">Body ↕</th>
+        <th data-k="yc">ŽK</th><th data-k="rc">ČK</th><th>+Gól</th><th></th>
+      </tr></thead>
+      <tbody id="playersBody"></tbody>
+    </table>
+  </div>
+  <div class="form-card">
+    <h3>Pridať hráča</h3>
+    <div class="form-row">
+      <input id="newName" placeholder="Meno a priezvisko">
+      <select id="newTeam"><option>OFK Lastomír</option><option>ŠK Strážske</option><option>OŠK Tušice - TNV</option><option>OŠK Zalužice</option></select>
+      <input id="newGoals" type="number" min="0" value="0" title="Góly">
+      <input id="newAssists" type="number" min="0" value="0" title="Asistencie">
+      <button id="addPlayerBtn" class="btn btn-gold" style="cursor:pointer;border:none">Pridať</button>
+    </div>
+  </div>
+</section>
+
+<footer>Liga 4 obcí © 2026 • Lastomír – Strážske – Tušice – Zalužice • Dáta upravíš priamo na stránke</footer>
+<script src="futbal.js"></script>
+</body>
+</html>
